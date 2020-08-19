@@ -13,7 +13,14 @@ class School
 
   def end_time
     time_array = self.start_time.split(':')
-    time_array[0] = (time_array[0].to_i + @hours_in_school_day).to_s
+    end_time = (time_array[0].to_i + @hours_in_school_day)
+
+    if end_time > 24
+      overflow_time = end_time - 24
+      time_array[0] = overflow_time.to_s
+    else
+      time_array[0] = end_time.to_s
+    end
 
     time_array.join(':')
   end
